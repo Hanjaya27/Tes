@@ -1,0 +1,47 @@
+import { createRouter, createWebHistory } from 'vue-router'
+
+import Home from '@/views/Home.vue'
+import Kelompok from '@/views/Kelompok.vue'
+import Login from '@/views/Login.vue'
+import CaraSewa from '@/views/CaraSewa.vue'
+import Register from '@/views/Register.vue'
+import EditProfil from '@/views/EditProfil.vue'
+import Pemesanan from '@/views/Pemesanan.vue'
+import Pembayaran from '@/views/Pembayaran.vue'
+import RiwayatPemesanan from '@/views/RiwayatPemesanan.vue'
+
+const routes = [
+  { path: '/', name: 'Home', component: Home },
+  { path: '/kelompok', name: 'Kelompok', component: Kelompok },
+  { path: '/login', name: 'Login', component: Login },
+    { path: '/cara-sewa', name: 'CaraSewa', component: CaraSewa },
+  { path: '/register', name: 'Register', component: Register },
+  { path: '/edit-profil', name: 'EditProfil', component: EditProfil },
+  { path: '/pemesanan', name: 'Pemesanan', component: Pemesanan },
+   {
+    path: '/pemesanan/:kendaraan',
+    name: 'Pemesanan',
+    component: Pemesanan,
+    props: true 
+  },
+  { path: '/pembayaran', name: 'Pembayaran', component: Pembayaran },
+  { path: '/riwayat', name: 'RiwayatPemesanan', component: RiwayatPemesanan }
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+})
+
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true'
+  const protectedRoutes = ['Pemesanan', 'Pembayaran', 'RiwayatPemesanan']
+
+  if (protectedRoutes.includes(to.name) && !isLoggedIn) {
+    next({ name: 'Login' })
+  } else {
+    next()
+  }
+})
+
+export default router

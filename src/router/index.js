@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Home from '@/views/Home.vue'
+import HomePage from '@/views/HomePage.vue'
 import Kelompok from '@/views/Kelompok.vue'
 import Login from '@/views/Login.vue'
 import CaraSewa from '@/views/CaraSewa.vue'
@@ -11,7 +11,7 @@ import Pembayaran from '@/views/Pembayaran.vue'
 import RiwayatPemesanan from '@/views/RiwayatPemesanan.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
+  { path: '/', name: 'HomePage', component: HomePage },
   { path: '/kelompok', name: 'Kelompok', component: Kelompok },
   { path: '/login', name: 'Login', component: Login },
     { path: '/cara-sewa', name: 'CaraSewa', component: CaraSewa },
@@ -21,7 +21,7 @@ const routes = [
    {
     path: '/pemesanan/:kendaraan',
     name: 'Pemesanan',
-    component: Pemesanan,
+    component: () => import('@/views/Pemesanan.vue'),
     props: true 
   },
   { path: '/pembayaran', name: 'Pembayaran', component: Pembayaran },

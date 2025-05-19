@@ -4,9 +4,11 @@
       <div class="card-body">
         <!-- Info Kendaraan -->
         <div class="text-center mb-3">
-          <img src="@/assets/images/Scoopy.jpg" alt="Honda Scoopy" class="img-fluid kendaraan-img" />
-          <h5 class="mt-3">Honda Scoopy</h5>
-          <p class="text-muted">Motor matic irit dan nyaman digunakan, cocok untuk harian.</p>
+          <img :src="gambarKendaraan" :alt="kendaraanDipilih" class="img-fluid kendaraan-img" />
+          <h5 class="mt-3">{{ kendaraanDipilih }}</h5>
+          <p class="text-muted">
+            Motor atau mobil pilihan yang siap digunakan untuk kebutuhan Anda.
+          </p>
         </div>
 
         <!-- Form -->
@@ -33,21 +35,44 @@
 </template>
 
 <script>
+import { ref, computed, } from 'vue'
+import { useRoute } from 'vue-router'
+
 export default {
   name: 'PemesananPage',
-  data() {
+  setup() {
+    const route = useRoute()
+    const kendaraanDipilih = ref(route.params.kendaraan || 'Honda Scoopy')
+
+    const tglMulai = ref('')
+    const tglSelesai = ref('')
+
+    const gambarKendaraan = computed(() => {
+      // Opsional: sesuaikan dengan nama file di /assets/images
+      const nama = kendaraanDipilih.value.toLowerCase()
+      if (nama.includes('Innova')) return require('@/assets/images/Innova.jpg')
+      if (nama.includes('Pajero')) return require('@/assets/images/Pajero.jpg')
+      if (nama.includes('vario')) return require('@/assets/images/vario.jpg')
+      return require('@/assets/images/Scoopy.jpg')
+    })
+
+    const pesanKendaraan = () => {
+      console.log('Pemesanan:', {
+        kendaraan: kendaraanDipilih.value,
+        tanggalMulai: tglMulai.value,
+        tanggalSelesai: tglSelesai.value
+      })
+    }
+
     return {
-      tglMulai: '',
-      tglSelesai: ''
-    };
-  },
-  methods: {
-    pesanKendaraan() {
-      // Logika penyimpanan atau validasi bisa ditambahkan di sini
-      console.log(`Tanggal mulai: ${this.tglMulai}, Tanggal selesai: ${this.tglSelesai}`);
+      kendaraanDipilih,
+      tglMulai,
+      tglSelesai,
+      pesanKendaraan,
+      gambarKendaraan
     }
   }
-};
+}
 </script>
 
 <style scoped>

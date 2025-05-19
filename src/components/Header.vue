@@ -7,7 +7,7 @@
 
     <div class="right">
       <nav class="navbar">
-        <router-link to="/">Home</router-link>
+        <router-link to="/">HomePage</router-link>
         <router-link to="/kelompok">About</router-link>
         <router-link to="/cara-sewa">Cara Sewa</router-link>
       </nav>

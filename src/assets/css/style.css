@@ -143,11 +143,11 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('@/assets/images/beach.jpg');
+  background-image: url('@/assets/images/Bannerr.jpeg');
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  opacity: 0.75;
+  opacity: 0.50;
   z-index: 0;
 }
 
@@ -166,11 +166,18 @@ section {
   object-fit: contain;
 }
 
+.hero-image {
+  width: 60%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
 .home-content {
   position: relative;
   z-index: 1;
-  padding-top: 60px; /* sesuaikan tinggi navbar */
+  padding-top: 60px; 
   color: white;
 }
 .home h3 {
@@ -193,6 +200,30 @@ section {
   font-weight: 300;
   line-height: 1.8;
   color: var(--bg);
+}
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px; /* posisi kiri bawah */
+  z-index: 9999; /* pastikan selalu di atas */
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
 }
 
 .heading {
